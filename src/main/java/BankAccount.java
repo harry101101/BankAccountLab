@@ -26,7 +26,7 @@ public class BankAccount {
     //Methods
     void deposit(double amount) {
         System.out.println("Account holder: " + firstName + " " + lastName);
-        if ((amount * 100) % 1 == 0) {
+        if (DoubleRounder.round(amount * 100,1) % 1 == 0) {
             balance += amount;
             System.out.println("£" + DoubleRounder.round(amount, 2) + " deposited. New balance £" + DoubleRounder.round(balance, 2) + ".");
         } else {
@@ -36,10 +36,11 @@ public class BankAccount {
 
     void withdraw(double amount) {
         System.out.println("Account holder: " + firstName + " " + lastName);
-        if ((amount * 100) % 1 == 0) {
+        if (DoubleRounder.round(amount * 100,1) % 1 == 0) {
             if ((balance - amount) >= -overdraft) {
                 balance -= amount;
-                System.out.println("£" + DoubleRounder.round(amount, 2) + " withdrawn. New balance £" + DoubleRounder.round(balance, 2) + ".");
+                System.out.println("£" + DoubleRounder.round(amount, 2) + " withdrawn. New balance £"
+                        + DoubleRounder.round(balance, 2) + ".");
             } else {
                 System.out.println("Transaction exceeds overdraft. Transaction cannot be done.");
             }
